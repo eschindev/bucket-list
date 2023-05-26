@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import BucketForm from './BucketForm';
-import Bucket from './Bucket';
+import React, { useState } from "react";
+import BucketForm from "./BucketForm";
+import Bucket from "./Bucket";
 
 function BucketList() {
   const [bucket, setBucket] = useState([]);
 
   // Function to add a bucket list item
   const addBucketItem = (item) => {
-
-    // TODO: Write logic to add the new bucket item to the bucket state variable
-    
+    setBucket([...bucket, item]);
   };
 
   // Function to mark bucket list item as complete
   const completeBucketItem = (id) => {
     // If the ID passed to this function matches the ID of the item that was clicked, mark it as complete
     let updatedBucket = bucket.map((item) => {
-      
-      // TODO: Write logic that marks an item as complete or incomplete when invoked
-
+      // Write logic that marks an item as complete or incomplete when invoked
+      if (item.id === id) {
+        item.completed = !item.completed;
+      }
+      return item;
     });
 
     setBucket(updatedBucket);
@@ -26,10 +26,11 @@ function BucketList() {
 
   // Function to remove bucket list item and update state
   const removeBucketItem = (id) => {
-    // TODO: Write logic that will return an array of items that don't contain the ID passed to this function
+    // Write logic that will return an array of items that don't contain the ID passed to this function
+    // Update the bucket state variable
+    let updatedBucket = bucket.filter((item) => item.id !== id);
 
-
-    // TODO: Update the bucket state variable
+    setBucket(updatedBucket);
   };
 
   // Function to edit the bucket list item
